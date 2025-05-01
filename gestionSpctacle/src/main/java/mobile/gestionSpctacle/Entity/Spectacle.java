@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import mobile.gestionSpctacle.Entity.Enum.CategorieSpectacle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,8 @@ public class Spectacle {
     )
     private List<Acteur> acteurs = new ArrayList<>();
     private String motsCles;
+    @Enumerated(EnumType.STRING)
+    private CategorieSpectacle categorie;
 
 }
 

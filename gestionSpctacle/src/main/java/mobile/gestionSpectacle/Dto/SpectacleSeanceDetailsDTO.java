@@ -14,6 +14,7 @@ public class SpectacleSeanceDetailsDTO {
     private Long idSpectacle;
     private String title;
     private String secondaryImage;
+    private String coverImage;
     private String description;
     private String motsCles;
     private String dateSeance;
