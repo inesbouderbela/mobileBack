@@ -4,8 +4,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import mobile.gestionSpctacle.Entity.Enum.SeatStatus;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +24,23 @@ public class Salle {
     @ManyToOne
     @JoinColumn(name = "lieu_id")
     private Lieu lieu;
-    @OneToMany(mappedBy = "salle", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "salle", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Place> places;
+
+    public void initPlaces() {
+
+            places = new ArrayList<>();
+
+
+        for (int i = 1; i <= capacite; i++) {
+            Place place = new Place();
+            place.setNumPlace(i);
+            place.setSalle(this);
+            place.setStatut(SeatStatus.AVAILABLE);
+            places.add(place);
+        }
+    }
+
+
 }
 

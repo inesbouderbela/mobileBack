@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import mobile.gestionSpctacle.Entity.Enum.SeatStatus;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,9 +15,11 @@ public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String statut;
+
+    private int numPlace;
+    @Enumerated(EnumType.STRING)
+    private SeatStatus statut;
 
     @ManyToOne
     @JoinColumn(name = "salle_id")
-    private Salle salle;
-}
+    private Salle salle; }

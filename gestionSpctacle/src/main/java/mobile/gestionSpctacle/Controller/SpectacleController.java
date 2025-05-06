@@ -33,8 +33,6 @@ import java.util.stream.Collectors;
 @RequestMapping("/spectacles")
 public class SpectacleController {
 
-
-
     @Autowired
     private SpectacleService spectacleService;
     @Autowired
@@ -147,7 +145,7 @@ public class SpectacleController {
 
     @GetMapping("/searchByDate")
     public ResponseEntity<List<SpectacleSeanceDetailsDTO>> getSeancesByDate(
-            @RequestParam String date) {  // Reçoit la date en String
+            @RequestParam String date) {
 
         try {
             // Conversion String -> LocalDate

@@ -22,6 +22,7 @@ public class Seance {
     private LocalDate dateSeance;
     private String heureDebut;
     private String heureFin;
+    private double prixDeBase;
 
     @ManyToOne
     @JoinColumn(name = "spectacle_id")

@@ -1,8 +1,10 @@
 package mobile.gestionSpctacle.Repository;
 
+import mobile.gestionSpctacle.Entity.Salle;
 import mobile.gestionSpectacle.Dto.DateCountDTO;
 
 import mobile.gestionSpctacle.Entity.Seance;
+import mobile.gestionSpectacle.Dto.SalleWithPlacesDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface SeanceRepository extends JpaRepository<Seance, Long> {
@@ -43,4 +46,13 @@ public interface SeanceRepository extends JpaRepository<Seance, Long> {
             "GROUP BY s.dateSeance " +
             "ORDER BY s.dateSeance DESC")
     List<DateCountDTO> findDateCounts();
+
+    @Query("SELECT seance.salle " +
+            "FROM Seance seance " +
+            "JOIN seance.salle salle " +
+            "WHERE seance.id = :seanceId")
+    Salle findSalleBySeanceId(@Param("seanceId") Long seanceId);
+
+
+
 }

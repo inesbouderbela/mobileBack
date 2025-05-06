@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 
 public class SpectacleSeanceDetailsDTO {
+    private Long idSeances;
     private Long idSpectacle;
     private String title;
     private String secondaryImage;
@@ -26,4 +27,5 @@ public class SpectacleSeanceDetailsDTO {
     private Double latitude;
     private Double longitude;
     private List<ActeurDTO> acteurs;
+    private Double prix;
 }

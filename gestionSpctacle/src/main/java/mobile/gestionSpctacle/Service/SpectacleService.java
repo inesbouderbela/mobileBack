@@ -45,13 +45,15 @@ public class SpectacleService {
     }
 
     public List<SpectacleSeanceDetailsDTO> getSeancesDetailsBySpectacleTitle(String titre) {
-        // Utilisez l'instance injectée plutôt qu'un appel statique
+
         List<Seance> seances = seanceRepository.findSeancesBySpectacleTitle(titre);
 
         return seances.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
+
+
 
 
 
@@ -64,6 +66,7 @@ public class SpectacleService {
         Lieu lieu = salle != null ? salle.getLieu() : null;
 
         SpectacleSeanceDetailsDTO dto = new SpectacleSeanceDetailsDTO();
+        dto.setIdSeances(seanceId);
         dto.setTitle(spectacle.getTitre());
         dto.setIdSpectacle(spectacle.getId());
         dto.setCoverImage(spectacle.getCoverImage());
@@ -73,6 +76,7 @@ public class SpectacleService {
         dto.setDateSeance(seance.getDateSeance().toString());
         dto.setHeureDebut(seance.getHeureDebut());
         dto.setHeureFin(seance.getHeureFin());
+        dto.setPrix(seance.getPrixDeBase());
         dto.setNomSalle(salle != null ? salle.getNom() : null);
         if (lieu != null) {
             dto.setNomLieu(lieu.getNom());
@@ -100,11 +104,13 @@ public class SpectacleService {
         Lieu lieu = salle != null ? salle.getLieu() : null;
 
         SpectacleSeanceDetailsDTO dto = new SpectacleSeanceDetailsDTO();
+        dto.setIdSeances(seance.getId());
         dto.setIdSpectacle(spectacle.getId());
         dto.setTitle(spectacle.getTitre());
         dto.setSecondaryImage(spectacle.getSecondaryImage());
         dto.setCoverImage(spectacle.getCoverImage());
         dto.setDescription(spectacle.getDescription());
+        dto.setPrix(seance.getPrixDeBase());
         dto.setMotsCles(spectacle.getMotsCles());
         dto.setDateSeance(seance.getDateSeance().toString());
         dto.setHeureDebut(seance.getHeureDebut());
